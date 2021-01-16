@@ -70,11 +70,16 @@ body {
   background-position: center;
 }
 .bomb {
-  background-color: #df16ad;
+  background-image: url('https://lh3.googleusercontent.com/proxy/SiuZwP_Cwo0eCO_ALzdHwx5Mc5KRUqmZaYj-SEBqnm1AJZb93J8LiFyFvFR5wKO4DtHq9RJBMstQkNypukoQzcI5RuSNqvkJKFOgG9ATA6i3vAWmpE0nWz_E_Lmc87M3P1PD');
+  background-size: cover;
+  background-position: center;
 }
 .debugscreen {
   width:180px;
   font-size:9px;
   padding:0 0 0 20px;
 }
+
+
+
 

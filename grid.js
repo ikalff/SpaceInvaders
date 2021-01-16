@@ -11,6 +11,7 @@ const displayScore = document.querySelector('#displayscore')
 const cells = []
 let alienCells = []
 let characterPosition
+let aliensLeftAlive = []
 
 // default alien starting positions
 const alienRows = 4
@@ -21,6 +22,10 @@ let verticalOffset = 0
 let direction = 'right'
 
 
+// Initialise the scoreboard
+displayScore.innerHTML = score
+displayLives.innerHTML = lives
+
 
 // Generate the grid and add the cells to an array. 
 // Identify walls, top row, final row, and second to last row
@@ -29,7 +34,7 @@ for (let i = 0; i < width * height; i++) {
   const cellwidth = 100 / width
   grid.appendChild(cell)
   cell.id = "cell" + i
-  cell.innerHTML = i
+  //cell.innerHTML = i
   cell.style.width = `${cellwidth}%`
   cells.push(cell)
 
@@ -45,12 +50,11 @@ generateAliens()
 
 // set the intervals for alien movements and bomb drops
 const intervalBombDrop = setInterval(() => {
-  //console.log('Bomb drop!')
-}, 5000)
+  dropBomb()
+}, 1000)
 
 const intervalPositionAliens = setInterval(() => {
   moveAliens()
-  //debugAliens()
 }, 2000)
 
 // Listen for keypresses
@@ -79,9 +83,8 @@ function moveCharacter(direction) {
     cells[characterPosition].classList.add('character')
   }
 }
-// make some aliens
+// initialise aliens
 function generateAliens() {
-
   let alienCounter = 1
   for (let i = 0; i < cells.length; i++) {
     cells[i].classList.remove('alien')
@@ -89,26 +92,23 @@ function generateAliens() {
     if (i >= (width * (verticalOffset)) && i % width >= leftHorizOffset && i % width < width - rightHorizOffset && i < width * (alienRows + verticalOffset)) {
       cells[i].classList.add('alien')
       alienCells.push({ 'id': [alienCounter], 'position': i, 'alive': true })
-      cells[i].innerHTML = alienCounter
+      aliensLeftAlive = alienCells
+      //cells[i].innerHTML = alienCounter
       alienCounter++
     }
   }
 }
 
-
-
 // shift the aliens
 function moveAliens() {
   //alienCells = []
-
   if (direction === 'right') {
     leftHorizOffset++
     rightHorizOffset--
     if (leftHorizOffset === (maxHorizOffset * 2)) {
       direction = 'down'
     }
-  }
-  else if (direction === 'left') {
+  } else if (direction === 'left') {
     leftHorizOffset--
     rightHorizOffset++
 
@@ -123,20 +123,18 @@ function moveAliens() {
       direction = 'left'
     }
   }
-
   let alienCounter = 1
   for (let i = 0; i < cells.length; i++) {
     cells[i].classList.remove('alien')
     cells[i].classList.remove('bullet')
+    cells[i].classList.remove('bomb')
     cells[i].classList.remove('hittarget')
     //cells[i].innerHTML = ''
     if (i >= (width * (verticalOffset)) && i % width >= leftHorizOffset && i % width < width - rightHorizOffset && i < width * (alienRows + verticalOffset)) {
       alienCells[alienCounter - 1].position = i
-
-
       if (alienCells[alienCounter - 1].alive) {
         cells[i].classList.add('alien')
-        cells[i].innerHTML = alienCounter
+        //cells[i].innerHTML = alienCounter
       }
       alienCounter++
     }
@@ -146,54 +144,50 @@ function moveAliens() {
   }
 }
 
-
 //loop through the cells above the character position. If an alien is found alive, kill it
 function shoot() {
   let i = characterPosition - width
   while (i > 0) {
     document.querySelector(`#cell${i}`).classList.add('bullet')
-    console.log(i)
+    //console.log(i)
     const aliensInBulletPath = alienCells.find(element => element.position === i)
     if (Boolean(aliensInBulletPath) && aliensInBulletPath.alive === true) {
       aliensInBulletPath.alive = false
-      cells[aliensInBulletPath.position].classList.add('hittarget')
       hitTarget(aliensInBulletPath.id, aliensInBulletPath.position)
       break
     }
     i -= width
   }
-  const aliensLeftAlive = alienCells.filter(element => element.alive === true)
-  console.log(`Aliens left alive: ${aliensLeftAlive.length}`)
+  aliensLeftAlive = alienCells.filter(element => element.alive === true)
+  //console.log(`Aliens left alive: ${aliensLeftAlive.length}`)
+  console.log(aliensLeftAlive)
 }
 
-
-
-
-//function shoot() {
-//  const column = width - (cells.length - characterPosition)
-//  for (let i = column; i <= (cells.length - 1 - width); i += width) {
-//    document.querySelector(`#cell${i}`).classList.add('bullet')
-//    console.log(i)
-//    const found = alienCells.find(element => element.position === i)
-//    if (Boolean(found)) {
-//     found.alive = false
-//    }
-//  }
-//}
-
-
-//function debugAliens() {
-//  let aliendetails = ''
-//  alienCells.forEach(element => {
-//    aliendetails = aliendetails + `Alien ${element.id}: position ${element.position}, alive: ${element.alive}<br>`
-//  })
-//  console.log(aliendetails)
-//}
-
-
+function dropBomb() {
+  const randomAlien = Math.floor(Math.random() * aliensLeftAlive.length)
+  let i = aliensLeftAlive[randomAlien].position
+  const alienColumn = i % width
+  const characterColumn = characterPosition - ((width * height) - width)
+  //console.log(`Character column: ${characterColumn}  Bomb column: ${alienColumn}`)
+  while (i < width * height) {
+    document.querySelector(`#cell${i}`).classList.add('bomb')
+    i += width
+  }
+  if (alienColumn === characterColumn){
+    takeDamage()
+  }
+}
 
 function hitTarget(id, position) {
   score = score + 100
   displayScore.innerHTML = score
-  //console.log`Alien #${id} killed at position ${position}`
+  cells[position].classList.add('hittarget')
+  console.log(`Alien #${id} killed at position ${position}`)
+}
+
+function takeDamage() {
+  lives--
+  displayLives.innerHTML = lives
+  cells[characterPosition].classList.add('hittarget')
+  console.log('You\'ve been hit!')
 }
