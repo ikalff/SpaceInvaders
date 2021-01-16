@@ -9,13 +9,18 @@
 </head>
 
 <body>
-
   <h1>Space Invaders</h1>
   <div class="scoreboard">
-    Score: <span id="displayscore"></span>
-    Lives: <span id="displaylives"></span>
+    <div id="displaygameover" class="hide">
+      <div id="displaymessage">dfgdfg</div>
+    </div>
+    <div id="displaystats" class="hide">
+      Score: <span id="displayscore"></span>
+      Lives: <span id="displaylives"></span>
+    </div>
+    <button id="playagain">Play game!</button>
   </div>
-  <div class="grid"></div>
+  <div class="grid hide"></div>
   <script src="grid.js"></script>
 </body>
 

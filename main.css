@@ -29,57 +29,82 @@ body {
   font-size: 25px;
   color: #cccccc;
   text-align: center;
-  font-size:11px;
+  font-size: 11px;
 }
 
-.scoreboard{
+.scoreboard {
   border: 1px solid rgb(181, 186, 187);
   margin: 20px 0 20px 0;
   padding: 20px;
 }
 
-.toprow{
- background-color: #dedede;  
+.toprow {
+  background-color: #dedede;
 }
-.wall{
-  color:#ff0000 !important;  
+
+.wall {
+  color: #ff0000 !important;
 }
-.earthsurface{
-  background-color: #999999; 
+
+.earthsurface {
+  background-color: #999999;
 }
-.finalrow{
+
+.finalrow {
   background-color: #4270d4;
 }
+
 .alien {
-  background-color: #65a117;
-}
-.hittarget {
-  background-color: #000000 !important;
-  background-image: url('https://www.pinclipart.com/picdir/middle/319-3196510_mushroom-cloud-explosion-clipart.png') !important;
+  background-image: url('https://pngimg.com/uploads/alien/alien_PNG4.png') !important;
   background-size: cover;
   background-position: center;
 }
+
+.hittarget {
+  background-image: url('https://www.pinclipart.com/picdir/middle/319-3196510_mushroom-cloud-explosion-clipart.png');
+  background-size: cover;
+  background-position: center;
+}
+
 .character {
   background-image: url('https://freepngimg.com/thumb/categories/1873.png');
   background-size: cover;
   background-position: center;
 }
+
 .bullet {
   background-image: url('https://www.pngrepo.com/png/182070/180/bullet-bullet.png');
   background-size: cover;
   background-position: center;
 }
+
 .bomb {
   background-image: url('https://lh3.googleusercontent.com/proxy/SiuZwP_Cwo0eCO_ALzdHwx5Mc5KRUqmZaYj-SEBqnm1AJZb93J8LiFyFvFR5wKO4DtHq9RJBMstQkNypukoQzcI5RuSNqvkJKFOgG9ATA6i3vAWmpE0nWz_E_Lmc87M3P1PD');
   background-size: cover;
   background-position: center;
 }
+
 .debugscreen {
-  width:180px;
-  font-size:9px;
-  padding:0 0 0 20px;
+  width: 180px;
+  font-size: 9px;
+  padding: 0 0 0 20px;
 }
 
+.hide {
+  display: none;
+}
 
+.scoreboard {
+  text-align: center;
+}
 
+#displaymessage {
+  margin: 0 0 20px 0;
+}
 
+#playagain {
+  padding: 10px 20px 10px 20px;
+  margin: 20px 0 0 0;
+  width: 100%;
+  display: block;
+}
