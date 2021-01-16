@@ -53,8 +53,11 @@ body {
 .alien {
   background-color: #65a117;
 }
-.deadalien {
-  background-color: #47720e;
+.hittarget {
+  background-color: #000000 !important;
+  background-image: url('https://www.pinclipart.com/picdir/middle/319-3196510_mushroom-cloud-explosion-clipart.png') !important;
+  background-size: cover;
+  background-position: center;
 }
 .character {
   background-image: url('https://freepngimg.com/thumb/categories/1873.png');
@@ -62,8 +65,16 @@ body {
   background-position: center;
 }
 .bullet {
-  background-color: #df2e16;
+  background-image: url('https://www.pngrepo.com/png/182070/180/bullet-bullet.png');
+  background-size: cover;
+  background-position: center;
 }
 .bomb {
   background-color: #df16ad;
 }
+.debugscreen {
+  width:180px;
+  font-size:9px;
+  padding:0 0 0 20px;
+}
+
