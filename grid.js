@@ -1,23 +1,16 @@
-// grab elements from the DOM
-const grid = document.querySelector('.grid')
-const displayStats = document.querySelector('#displaystats')
-const displayLives = document.querySelector('#displaylives')
-const displayScore = document.querySelector('#displayscore')
-const displayGameOver = document.querySelector('#displaygameover')
-const displayMessage = document.querySelector('#displaymessage')
-const playAgain = document.querySelector('#playagain')
-
-// Declare variables 
+// Declare global variables 
 let width
 let height
-let score = 0
-let lives = 3
+let score
+let lives
+let gameInProgress
 let cells
 let alienCells = []
 let aliensLeftAlive
 let characterPosition
 let intervalPositionAliens
 let intervalBombDrop
+let bombFlag
 let alienRows
 let maxHorizOffset
 let leftHorizOffset
@@ -25,40 +18,58 @@ let rightHorizOffset
 let verticalOffset
 let direction
 
-// Initialise the scoreboard
-displayScore.innerHTML = score
-displayLives.innerHTML = lives
+
+// Grab elements from the DOM
+const grid = document.querySelector('.grid')
+const displayStats = document.querySelector('#displaystats')
+const displayLives = document.querySelector('#displaylives')
+const displayScore = document.querySelector('#displayscore')
+const displayGameOver = document.querySelector('#displaygameover')
+const displayMessage = document.querySelector('#displaymessage')
+const playGame = document.querySelector('#playgame')
+const quitGame = document.querySelector('#quitgame')
 
 
-// Generate the grid, set variables and add the cells to an array. 
 function startGame() {
-
-  grid.innerHTML = ''
-
-  clearInterval(intervalBombDrop)
-  clearInterval(intervalPositionAliens)
+  // Start game
+  gameInProgress = true
 
   // Set the width. ideally this should be an odd number so the character can be placed in the center. Anything less than 5 won't have room for aliens. Recommend 7-15
   width = 15
   height = 15
+
+  // Set other variables
   score = 0
   lives = 3
+
   cells = []
   alienCells = []
   aliensLeftAlive = []
+  bombFlag = 0
 
-  // default alien starting positions
+  // Default alien starting positions
   alienRows = 4
   maxHorizOffset = 3
-  leftHorizOffset = 2
-  rightHorizOffset = 4
+  leftHorizOffset = 3
+  rightHorizOffset = 3
   verticalOffset = 0
   direction = 'right'
 
+  // Update DOM elements
+  grid.innerHTML = ''
+  displayScore.innerHTML = score
+  displayLives.innerHTML = lives
   displayStats.classList.remove('hide')
   grid.classList.remove('hide')
   displayGameOver.classList.add('hide')
+  playGame.classList.add('hide')
+  quitGame.classList.remove('hide')
 
+  // Clear any intervals
+  //clearInterval(intervalBombDrop)
+  //clearInterval(intervalPositionAliens)
+
+  // Generate the grid, set variables and add the cells to an array. 
   for (let i = 0; i < width * height; i++) {
     const cell = document.createElement('div')
     const cellwidth = 100 / width
@@ -73,23 +84,29 @@ function startGame() {
       characterPosition = i
     }
   }
+  // Generate the aliens
   generateAliens()
 
-  // set the intervals for alien movements and bomb drops
+  // set the interval for alien movements and bomb drops.
+  //! intervalBombDrop must be HALF of intervalPositionAliens
   intervalBombDrop = setInterval(() => {
     dropBomb()
-  }, 1000)
-
+  }, 500)
   intervalPositionAliens = setInterval(() => {
     moveAliens()
-  }, 2000)
+  }, 1000)
 }
 
-// Listen for keypresses or play again button
-playAgain.addEventListener('click', () => {
+
+// Listen for keypresses or play button
+playGame.addEventListener('click', () => {
   startGame()
 })
-
+quitGame.addEventListener('click', () => {
+  if (confirm('Are you sure you want to quit?')) {
+    gameOver('quit')
+  }
+})
 document.addEventListener('keyup', (event) => {
   const key = event.code
   if (key === 'Space') {
@@ -101,13 +118,8 @@ document.addEventListener('keyup', (event) => {
   if (key === 'ArrowRight') {
     moveCharacter('right')
   }
-  if (key === 'KeyQ') {
-    const quitKey = prompt('Do you really want to quit? Press Y for yes, or any other key for no.')
-    if (quitKey === 'y' || quitKey === 'Y') {
-      gameOver('quit')
-    }
-  }
 })
+
 
 // Move the character
 function moveCharacter(direction) {
@@ -121,7 +133,9 @@ function moveCharacter(direction) {
     cells[characterPosition].classList.add('character')
   }
 }
-// initialise aliens
+
+
+// Initialise aliens
 function generateAliens() {
   let alienCounter = 1
   for (let i = 0; i < cells.length; i++) {
@@ -135,7 +149,8 @@ function generateAliens() {
   }
 }
 
-// shift the aliens
+
+// Shift the aliens
 function moveAliens() {
   if (direction === 'right') {
     leftHorizOffset++
@@ -173,46 +188,50 @@ function moveAliens() {
       alienCounter++
     }
   }
+  // If aliens reach the bottom, game is over
   if (verticalOffset === (height - alienRows)) {
-    verticalOffset = 0
+    gameOver('lose')
   }
 }
 
-//loop through the cells above the character position. If an alien is found alive, kill it
+
+// Loop through the cells above the character position. If an alien is found alive, kill it
 function shoot() {
-
-  let i = characterPosition - width
-
-
-  while (i > 0) {
-
-  console.log(i)
-    document.querySelector(`#cell${i}`).classList.add('bullet')
-    const aliensInBulletPath = alienCells.find(element => element.position === i)
-    if (Boolean(aliensInBulletPath) && aliensInBulletPath.alive === true) {
-      aliensInBulletPath.alive = false
-      hitTarget(aliensInBulletPath.position)
-      break
+  if (Boolean(gameInProgress)) {
+    let i = characterPosition - width
+    while (i > 0) {
+      document.querySelector(`#cell${i}`).classList.add('bullet')
+      const aliensInBulletPath = alienCells.find(element => element.position === i)
+      if (Boolean(aliensInBulletPath) && aliensInBulletPath.alive === true) {
+        aliensInBulletPath.alive = false
+        hitTarget(aliensInBulletPath.position)
+        break
+      }
+      i -= width
     }
-    i -= width
+    aliensLeftAlive = alienCells.filter(element => element.alive === true)
   }
-  aliensLeftAlive = alienCells.filter(element => element.alive === true)
 }
+
 
 // Select a random alien that is still alive and drop a bomb from it
 function dropBomb() {
-  const randomAlien = Math.floor(Math.random() * aliensLeftAlive.length)
-  let i = aliensLeftAlive[randomAlien].position
-  const alienColumn = i % width
-  const characterColumn = characterPosition - ((width * height) - width)
-  while (i < width * height) {
-    document.querySelector(`#cell${i}`).classList.add('bomb')
-    i += width
+  if (bombFlag % 2 === 0) {
+    const randomAlien = Math.floor(Math.random() * aliensLeftAlive.length)
+    let i = aliensLeftAlive[randomAlien].position
+    const alienColumn = i % width
+    const characterColumn = characterPosition - ((width * height) - width)
+    while (i < width * height) {
+      document.querySelector(`#cell${i}`).classList.add('bomb')
+      i += width
+    }
+    if (alienColumn === characterColumn) {
+      takeDamage()
+    }
   }
-  if (alienColumn === characterColumn) {
-    takeDamage()
-  }
+  bombFlag++
 }
+
 
 // Update score when an alien is hit
 function hitTarget(position) {
@@ -226,6 +245,7 @@ function hitTarget(position) {
   }
 }
 
+
 // Update lives when player character is bombed
 function takeDamage() {
   lives--
@@ -238,19 +258,32 @@ function takeDamage() {
   }
 }
 
-// End the game if the user wins, loses or hits Q
+
+// End the game if the user wins, loses or quits
 function gameOver(reason) {
+  gameInProgress = false
   clearInterval(intervalBombDrop)
   clearInterval(intervalPositionAliens)
-  grid.classList.add('hide')
-  displayGameOver.classList.remove('hide')
+  let message = ''
+  let delay = 0
   if (reason === 'win') {
-    displayMessage.innerHTML = 'You win!'
+    message = 'You win!'
+    delay = 1000
   } else if (reason === 'lose') {
-    displayMessage.innerHTML = 'You lost!'
+    message = 'You lost!'
+    delay = 1000
   } else if (reason === 'quit') {
-    displayMessage.innerHTML = 'You left the game'
+    message = 'You left the game'
+    delay = 0
   }
+  setTimeout(() => {
+    grid.classList.add('hide')
+    displayGameOver.classList.remove('hide')
+    playGame.classList.remove('hide')
+    quitGame.classList.add('hide')
+    playGame.innerHTML = 'Play again'
+    displayMessage.innerHTML = message
+  }, delay)
 }
 
 
