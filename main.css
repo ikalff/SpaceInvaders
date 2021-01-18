@@ -1,110 +1,227 @@
+/* Basic styles */
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Oxanium', 'ZCOOL QingKe HuangYou', 'Nova Square', 'Odibee Sans', 'Staatliches', Arial, Helvetica, sans-serif;
+  color: #ffffff;
+  font-size: 18px;
+  line-height: 24px;
+  text-align: center;
+}
+
+
+
+
+video {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+#contentcontainer {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 
 body {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
   margin: 0;
-  padding: 20px;
+  background-size: cover;
+  background-position: center;
+  justify-content: center;
 }
 
 .grid {
   display: flex;
   flex-direction: row;
-  border: 1px solid rgb(181, 186, 187);
-  width: 600px;
-  height: 600px;
+  width: 100%;
+  max-width: 900px;
   flex-wrap: wrap;
+  flex: 1;
+  margin: 0 auto 40px auto;
+  justify-content: space-between;
 }
 
 .grid div {
-  border: 1px solid rgb(181, 186, 187);
   font-size: 25px;
   color: #cccccc;
   text-align: center;
   font-size: 11px;
-}
-
-.scoreboard {
-  border: 1px solid rgb(181, 186, 187);
-  margin: 20px 0 20px 0;
-  padding: 20px;
-}
-
-.toprow {
-  background-color: #dedede;
-}
-
-.wall {
-  color: #ff0000 !important;
-}
-
-.earthsurface {
-  background-color: #999999;
-}
-
-.finalrow {
-  background-color: #4270d4;
-}
-
-.alien {
-  background-image: url('https://pngimg.com/uploads/alien/alien_PNG4.png') !important;
-  background-size: cover;
-  background-position: center;
-}
-
-.hittarget {
-  background-image: url('https://www.pinclipart.com/picdir/middle/319-3196510_mushroom-cloud-explosion-clipart.png');
-  background-size: cover;
-  background-position: center;
-}
-
-.character {
-  background-image: url('https://freepngimg.com/thumb/categories/1873.png');
-  background-size: cover;
-  background-position: center;
-}
-
-.bullet {
-  background-image: url('https://www.pngrepo.com/png/182070/180/bullet-bullet.png');
-  background-size: cover;
-  background-position: center;
-}
-
-.bomb {
-  background-image: url('https://lh3.googleusercontent.com/proxy/SiuZwP_Cwo0eCO_ALzdHwx5Mc5KRUqmZaYj-SEBqnm1AJZb93J8LiFyFvFR5wKO4DtHq9RJBMstQkNypukoQzcI5RuSNqvkJKFOgG9ATA6i3vAWmpE0nWz_E_Lmc87M3P1PD');
-  background-size: cover;
-  background-position: center;
-}
-
-.debugscreen {
-  width: 180px;
-  font-size: 9px;
-  padding: 0 0 0 20px;
+  height: 40px;
 }
 
 .hide {
-  display: none;
+  display: none !important;
 }
 
-.scoreboard {
-  text-align: center;
+/* Characters and animations */
+
+.alien {
+  background-image: url('https://pngimg.com/uploads/alien/alien_PNG4.png') !important;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
-#displaymessage {
+.hittarget {
+  background-image: url('images/explosion.png');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.character {
+  background-image: url('images/spaceman.png');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.bullet {
+  background-image: url('images/laser-player.gif');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.bomb {
+  background-image: url('images/laser-aliens.gif');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Branding and information */
+
+#displaygame {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.gridcontainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  background-image: url('images/planet-surface-top.png');
+  background-position: bottom center;
+  background-repeat: no-repeat;
+}
+
+.planetbottom {
+  background-image: url('images/planet-surface-bottom.png');
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-color: #bce1ab;
+  flex: 1;
+}
+
+#displayintro, #displaystats, #displaygameover {
+  padding: 20px;
+}
+
+#displaystats {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  align-self: start;
+  flex: none;
+  width: 100%;
+}
+
+#displaystats>div {
+  padding: 0 30px 0 30px;
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+}
+
+#displaystats>div div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  line-height: 32px;
+  padding: 0 10px 0 10px;
+}
+
+#displaystats button {
+  font-size: 20px;
+  line-height: 22px;
+  padding: 10px 20px 10px 20px;
+  max-width: 200px;
+  margin: 10px 20px 10px 20px;
+}
+
+#displaystats .logo {
+  width: 200px;
+  margin: 10px 20px 10px 20px;
+}
+
+#displayscore, #displaylives {
+  margin: 0 0 0 10px;
+  font-weight: 800;
+  color: #ef0a6a;
+  font-size: 40px;
+  line-height: 42px;
+}
+
+.logo {
+  width: 100%;
+  max-width: 500px;
   margin: 0 0 20px 0;
+  display: block;
 }
 
 button {
-  padding: 10px 20px 10px 20px;
+  padding: 20px 30px 20px 30px;
   margin: 20px 0 0 0;
   width: 100%;
   display: block;
+  border-radius: 6px;
+  font-size: 40px;
+  line-height: 42px;
+  font-weight: 800;
+  background-color: #ef0a6a;
+  color: #ffffff;
+  border: none;
+}
+
+button:hover{
+  background-color: #911d5e;
+}
+
+@media only screen and (max-width: 700px) {
+  #displaystats .logo {
+    width: 100px;
+  }
+  #displaystats>div div, #displayscore, #displaylives {
+    font-size: 20px;
+    line-height: 22px;
+  }
+  #displaystats button {
+    font-size: 14px;
+    line-height: 16px;
+  }
 }

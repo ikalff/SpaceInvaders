@@ -21,13 +21,19 @@ let direction
 
 // Grab elements from the DOM
 const grid = document.querySelector('.grid')
-const displayStats = document.querySelector('#displaystats')
+const displayIntro = document.querySelector('#displayintro')
+const displayGame = document.querySelector('#displaygame')
 const displayLives = document.querySelector('#displaylives')
 const displayScore = document.querySelector('#displayscore')
 const displayGameOver = document.querySelector('#displaygameover')
 const displayMessage = document.querySelector('#displaymessage')
 const playGame = document.querySelector('#playgame')
+const playAgain = document.querySelector('#playagain')
 const quitGame = document.querySelector('#quitgame')
+
+
+
+startGame()
 
 
 function startGame() {
@@ -40,7 +46,7 @@ function startGame() {
 
   // Set other variables
   score = 0
-  lives = 3
+  lives = 33
 
   cells = []
   alienCells = []
@@ -59,11 +65,9 @@ function startGame() {
   grid.innerHTML = ''
   displayScore.innerHTML = score
   displayLives.innerHTML = lives
-  displayStats.classList.remove('hide')
-  grid.classList.remove('hide')
+  displayIntro.classList.add('hide')
   displayGameOver.classList.add('hide')
-  playGame.classList.add('hide')
-  quitGame.classList.remove('hide')
+  displayGame.classList.remove('hide') 
 
   // Clear any intervals
   //clearInterval(intervalBombDrop)
@@ -100,6 +104,9 @@ function startGame() {
 
 // Listen for keypresses or play button
 playGame.addEventListener('click', () => {
+  startGame()
+})
+playAgain.addEventListener('click', () => {
   startGame()
 })
 quitGame.addEventListener('click', () => {
@@ -267,21 +274,18 @@ function gameOver(reason) {
   let message = ''
   let delay = 0
   if (reason === 'win') {
-    message = 'You win!'
+    message = `Congratulations - You win! Your final score was ${score}`
     delay = 1000
   } else if (reason === 'lose') {
-    message = 'You lost!'
+    message = `Sorry - you lost all your lives. Your final score was ${score}`
     delay = 1000
   } else if (reason === 'quit') {
     message = 'You left the game'
     delay = 0
   }
   setTimeout(() => {
-    grid.classList.add('hide')
+    displayGame.classList.add('hide')
     displayGameOver.classList.remove('hide')
-    playGame.classList.remove('hide')
-    quitGame.classList.add('hide')
-    playGame.innerHTML = 'Play again'
     displayMessage.innerHTML = message
   }, delay)
 }
