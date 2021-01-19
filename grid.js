@@ -67,7 +67,7 @@ function startGame() {
   displayLives.innerHTML = lives
   displayIntro.classList.add('hide')
   displayGameOver.classList.add('hide')
-  displayGame.classList.remove('hide') 
+  displayGame.classList.remove('hide')
 
   // Clear any intervals
   //clearInterval(intervalBombDrop)
@@ -130,6 +130,9 @@ document.addEventListener('keyup', (event) => {
 
 // Move the character
 function moveCharacter(direction) {
+  for (let i = 0; i < cells.length; i++) {
+    cells[i].classList.remove('bullet')
+  }
   if (direction === 'right' && characterPosition < ((width * height) - 1)) {
     cells[characterPosition].classList.remove('character')
     characterPosition++
@@ -289,5 +292,3 @@ function gameOver(reason) {
     displayMessage.innerHTML = message
   }, delay)
 }
-
-

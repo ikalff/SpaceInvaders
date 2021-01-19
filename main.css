@@ -41,6 +41,7 @@ body {
   background-size: cover;
   background-position: center;
   justify-content: center;
+  background-color: #000006;
 }
 
 .grid {
@@ -69,35 +70,35 @@ body {
 /* Characters and animations */
 
 .alien {
-  background-image: url('https://pngimg.com/uploads/alien/alien_PNG4.png') !important;
+  background-image: url('assets/alienship.gif') !important;
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
 }
 
 .hittarget {
-  background-image: url('images/explosion.png');
+  background-image: url('assets/explosion.png');
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
 }
 
 .character {
-  background-image: url('images/spaceman.png');
+  background-image: url('assets/player.png');
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
 }
 
 .bullet {
-  background-image: url('images/laser-player.gif');
+  background-image: url('assets/laser-player.gif');
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
 }
 
 .bomb {
-  background-image: url('images/laser-aliens.gif');
+  background-image: url('assets/laser-aliens.gif');
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
@@ -119,13 +120,13 @@ body {
   align-items: center;
   justify-content: center;
   flex-wrap: nowrap;
-  background-image: url('images/planet-surface-top.png');
+  background-image: url('assets/planet-surface-top.png');
   background-position: bottom center;
   background-repeat: no-repeat;
 }
 
 .planetbottom {
-  background-image: url('images/planet-surface-bottom.png');
+  background-image: url('assets/planet-surface-bottom.png');
   background-position: top center;
   background-repeat: no-repeat;
   background-color: #bce1ab;
