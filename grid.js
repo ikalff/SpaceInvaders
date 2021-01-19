@@ -33,7 +33,7 @@ const quitGame = document.querySelector('#quitgame')
 
 
 
-startGame()
+//startGame()
 
 
 function startGame() {
@@ -68,10 +68,6 @@ function startGame() {
   displayIntro.classList.add('hide')
   displayGameOver.classList.add('hide')
   displayGame.classList.remove('hide')
-
-  // Clear any intervals
-  //clearInterval(intervalBombDrop)
-  //clearInterval(intervalPositionAliens)
 
   // Generate the grid, set variables and add the cells to an array. 
   for (let i = 0; i < width * height; i++) {

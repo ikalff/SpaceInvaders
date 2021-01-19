@@ -46,7 +46,18 @@ video {
   align-items: center;
   justify-content: center;
   flex: 1;
+}
 
+.gridcontainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  background-image: url('assets/planet-surface-top.png');
+  background-position: bottom center;
+  background-repeat: no-repeat;
+  min-height: 600px;
 }
 
 .grid {
@@ -82,17 +93,6 @@ video {
   justify-content: space-between;
 }
 
-.gridcontainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: nowrap;
-  background-image: url('assets/planet-surface-top.png');
-  background-position: bottom center;
-  background-repeat: no-repeat;
-}
-
 .planetbottom { 
   background-image: url('assets/planet-surface-bottom.png');
   background-position: top center;
@@ -107,6 +107,12 @@ video {
 #displayintro, #displaystats, #displaygameover {
   padding: 20px;
 }
+
+#displayintro, #displaygameover {
+  padding: 20px;
+  max-width: 600px;
+}
+
 
 #displaystats {
   display: flex;
@@ -146,6 +152,13 @@ video {
   margin: 10px 20px 10px 20px;
 }
 
+.logo {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto 20px auto;
+  display: block;
+}
+
 #displaystats .logo {
   width: 200px;
   margin: 10px 20px 10px 20px;
@@ -159,12 +172,6 @@ video {
   line-height: 42px;
 }
 
-.logo {
-  width: 100%;
-  max-width: 500px;
-  margin: 0 0 20px 0;
-  display: block;
-}
 
 button {
   padding: 20px 30px 20px 30px;
@@ -222,7 +229,7 @@ button:hover {
 }
 
  
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 800px) {
   #displaystats .logo {
     width: 100px;
   }
@@ -236,3 +243,10 @@ button:hover {
   }
 }
  
+@media only screen and (max-width: 550px) {
+
+  #displaystats {
+flex-direction: column;
+
+  }
+}
