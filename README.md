@@ -44,7 +44,7 @@ The biggest challenges with this game were:
 - The user interface: It took me some time to iron out the main cross-platform issues and ensure the game was playable on mobile or desktop
   
 ## Future Improvements
-There are a number of improvements I would like to add in future:
+There are a number of improvements I would like to add in future, for example adding more levels, some barriers to obstruct the laser beams, or creating a wider range of alien characters with different attributes. 
 
 
 
