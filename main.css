@@ -164,7 +164,7 @@ video {
   margin: 10px 20px 10px 20px;
 }
 
-#displayscore, #displaylives {
+#displayscore, #displaylives, #displaylevel {
   margin: 0 0 0 10px;
   font-weight: 800;
   color: #ef0a6a;
@@ -195,6 +195,18 @@ button:hover {
 
 .alien {
   background-image: url('assets/alienship.gif') !important;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.bossalien {
+  background-image: url('assets/bossalien.gif') !important;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.bossalienhalfdead {
+  background-image: url('assets/bossalien-halfdead.gif') !important;
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
@@ -233,7 +245,7 @@ button:hover {
   #displaystats .logo {
     width: 100px;
   }
-  #displaystats>div div, #displayscore, #displaylives {
+  #displaystats>div div, #displayscore, #displaylives,  #displaylevel {
     font-size: 20px;
     line-height: 22px;
   }
