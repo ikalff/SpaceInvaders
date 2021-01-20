@@ -46,13 +46,13 @@ const levels = [
   },
   {
     level: 2,
-    lives: 5,
+    lives: 3,
     bossAliens: 8,
     offset: 3
   },
   {
     level: 3,
-    lives: 7,
+    lives: 3,
     bossAliens: 16,
     offset: 2
   }
@@ -250,7 +250,7 @@ function moveAliens() {
 
 // Loop through the cells above the character position. If an alien is found alive, kill it
 function shoot() {
-  if (Boolean(gameInProgress)) {
+  if (gameInProgress) {
     let i = characterPosition - width
     while (i > 0) {
       document.querySelector(`#cell${i}`).classList.add('bullet')
