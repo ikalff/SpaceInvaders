@@ -40,25 +40,25 @@ const mobileRight = document.querySelector('#mobileright')
 const levels = [
   {
     level: 1,
-    lives: 10,
-    bossAliens: 3,
+    lives: 13,
+    bossAliens: 4,
     offset: 4
   },
   {
     level: 2,
-    lives: 20,
-    bossAliens: 9,
+    lives: 15,
+    bossAliens: 8,
     offset: 3
   },
   {
     level: 3,
-    lives: 30,
-    bossAliens: 18,
+    lives: 17,
+    bossAliens: 16,
     offset: 2
   }
 ]
 
-startGame()
+//startGame()
 
 
 function startGame() {
@@ -182,6 +182,7 @@ function moveCharacter(direction) {
 // Initialise aliens
 function generateAliens() {
   let alienCounter = 1
+  let bossAlienCounter = 1
 
   for (let i = 0; i < cells.length; i++) {
     cells[i].classList.remove('alien')
@@ -192,11 +193,14 @@ function generateAliens() {
       alienCounter++
     }
   }
-  for (let i = 0; i < levels[level - 1].bossAliens; i++) {
-    let randomAlien = Math.floor(Math.random() * alienCells.length)
-    cells[alienCells[randomAlien].position].classList.add('bossalien')
-    alienCells[randomAlien].lives = 2
-    alienCells[randomAlien].maxLives = 2
+  while (bossAlienCounter <= levels[level - 1].bossAliens) {
+    const randomAlien = Math.floor(Math.random() * alienCells.length)
+    if (alienCells[randomAlien].maxLives !== 2) {
+      cells[alienCells[randomAlien].position].classList = 'bossalien'
+      alienCells[randomAlien].lives = 2
+      alienCells[randomAlien].maxLives = 2
+      bossAlienCounter++
+    } 
   }
 }
 
@@ -242,7 +246,7 @@ function moveAliens() {
   }
   // If aliens reach the bottom, game is over
   if (verticalOffset === (height - alienRows)) {
-    gameOver('lose')
+    gameOver('invaded')
   }
 }
 
@@ -307,7 +311,7 @@ function takeDamage() {
   cells[characterPosition].classList.remove('character')
   cells[characterPosition].classList.add('hittarget')
   if (lives === 0) {
-    gameOver('lose')
+    gameOver('killed')
   }
 }
 
@@ -329,8 +333,13 @@ function gameOver(reason) {
     level = 1
     playAgain.innerHTML = 'Play again'
     delay = 1000
-  } else if (reason === 'lose') {
+  } else if (reason === 'killed') {
     message = `Sorry - you lost all your lives. Your final score was ${score}`
+    level = 1
+    playAgain.innerHTML = 'Play again'
+    delay = 1000
+  } else if (reason === 'invaded') {
+    message = `Sorry - the aliens managed to land on your planet. Your final score was ${score}`
     level = 1
     playAgain.innerHTML = 'Play again'
     delay = 1000

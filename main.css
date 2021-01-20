@@ -1,5 +1,4 @@
 /* Basic styles */
-
 * {
   box-sizing: border-box;
   margin: 0;
@@ -138,6 +137,10 @@ video {
 #displayintro, #displaygameover {
   padding: 20px;
   max-width: 600px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 #displaystats {
@@ -267,7 +270,15 @@ button:hover {
   background-repeat: no-repeat;
 }
 
+#displayrotate {
+  display: none;
+}
+
+
 @media only screen and (max-width: 1000px) {
+  #displayrotate {
+    display: none;
+  }
   #displaystats .logo {
     width: 140px;
   }
@@ -281,18 +292,17 @@ button:hover {
   }
 }
 
+
+
 @media only screen and (max-width: 600px) {
+  #displayrotate {
+    display: none;
+  }
   #displaystats {
     padding: 10px 10px 20px 10px;
   }
   #displaystats .logo {
     width: 70px;
-  }
-  #displaygameover {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
   }
   #displaystats>div div, #displayscore, #displaylives, #displaylevel {
     font-size: 14px;
@@ -314,8 +324,11 @@ button:hover {
   .grid div {
     height: 24px;
   }
-  #displayintro .logo, #displaygameover, .logo {
-    max-width: 200px;
+  #displayintro .logo {
+    max-width: 160px;
+  }
+  #displaygameover, .logo {
+    max-width: 240px;
   }
   button {
     font-size: 16px;
@@ -333,5 +346,26 @@ button:hover {
     border: 1px solid #cccccc;
     padding: 14px 10px 14px 10px;
     touch-action: manipulation;
+  }
+
+  #instructions {
+    padding:10px;
+    margin: 20px 0 10px 0;
+  }
+#instructions div p {
+  font-size: 13px;
+  line-height: 14px;
+}
+}
+
+@media (orientation: landscape) and (max-width: 600px){
+  #displayrotate {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  #displaygameover, #displaygame, #displayintro {
+    display: none;
   }
 }
