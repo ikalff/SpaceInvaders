@@ -58,8 +58,6 @@ const levels = [
   }
 ]
 
-//startGame()
-
 
 function startGame() {
 
@@ -127,7 +125,6 @@ function startGame() {
 }
 
 
-// Listen for keypresses or play button
 playGame.addEventListener('click', () => {
   startGame()
 })
@@ -200,7 +197,7 @@ function generateAliens() {
       alienCells[randomAlien].lives = 2
       alienCells[randomAlien].maxLives = 2
       bossAlienCounter++
-    } 
+    }
   }
 }
 

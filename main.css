@@ -1,4 +1,5 @@
 /* Basic styles */
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -274,7 +275,6 @@ button:hover {
   display: none;
 }
 
-
 @media only screen and (max-width: 1000px) {
   #displayrotate {
     display: none;
@@ -291,8 +291,6 @@ button:hover {
     line-height: 16px;
   }
 }
-
-
 
 @media only screen and (max-width: 600px) {
   #displayrotate {
@@ -335,35 +333,77 @@ button:hover {
     line-height: 18px;
   }
   .planetbottom {
-    padding: 0 0 10px 0;
+    padding: 0 5px 10px 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
   }
   .planetbottom button {
     margin: 0 5px 0 5px;
     display: inline;
-    width: 25%;
     color: #666666;
     background-color: #ffffff;
     border: 1px solid #cccccc;
-    padding: 14px 10px 14px 10px;
+    padding: 14px 5px 14px 5px;
+    height: 50px;
     touch-action: manipulation;
   }
-
+  #mobileleft, #mobileright {
+    flex: 1;
+  }
+  #mobileleft {
+    background-image: url('assets/arrow-left.png');
+    background-size: 20%;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  #mobileright {
+    background-image: url('assets/arrow-right.png');
+    background-size: 20%;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  #mobileshoot {
+    flex: 5;
+  }
   #instructions {
-    padding:10px;
+    padding: 10px;
     margin: 20px 0 10px 0;
   }
-#instructions div p {
-  font-size: 13px;
-  line-height: 14px;
-}
+  #instructions div p {
+    font-size: 13px;
+    line-height: 14px;
+  }
 }
 
-@media (orientation: landscape) and (max-width: 600px){
+/* Check orientation: iOS */
+
+@media only screen and (max-device-width: 900px) and (orientation: landscape) {
   #displayrotate {
     height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
+  }
+  #displayrotate .logo {
+    max-width: 160px;
+  }
+  #displaygameover, #displaygame, #displayintro {
+    display: none;
+  }
+}
+
+/* Check orientation: Android */
+
+@media only screen and (device-width: 900px) and (orientation: landscape) {
+  #displayrotate {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  #displayrotate .logo {
+    max-width: 160px;
   }
   #displaygameover, #displaygame, #displayintro {
     display: none;
