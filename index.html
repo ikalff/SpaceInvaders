@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Space Invaders</title>
   <link rel="stylesheet" href="main.css">
   <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -15,71 +14,62 @@
   <video autoplay muted loop id="myVideo">
     <source src="assets/iStock-483289035.mov" type="video/mp4">
   </video>
-<div id="planetbg">
-  <div id="contentcontainer">
-    <div id="displayintro">
-      <img src="assets/space-invaders-title.png" alt="Space Invaders" class="logo">
-
-
-      <p>Defend your home planet against the invading alien swarm!</p>
-
-      <div id='instructions'>
-
-        <div>
-          <img src="assets/spacebar.png">
-          <p>Press space to shoot</p>
+  <div id="planetbg">
+    <div id="contentcontainer">
+      <div id="displayintro">
+        <img src="assets/space-invaders-title.png" alt="Space Invaders" class="logo">
+        <p>Defend your home planet against the invading alien swarm!</p>
+        <div id='instructions'>
+          <div>
+            <img src="assets/spacebar.png">
+            <p>Press space to shoot</p>
+          </div>
+          <div>
+            <img src="assets/arrows.png">
+            <p>Use arrows to move</p>
+          </div>
+          <div>
+            <img src="assets/laser-aliens.gif">
+            <p>Avoid enemy lasers. If you get hit, you lose a life and 50 points</p>
+          </div>
+          <div>
+            <img src="assets/bossalien.gif">
+            <p>Watch out for boss aliens. These guys take two shots to kill!</p>
+          </div>
         </div>
-        <div>
-          <img src="assets/arrows.png">
-          <p>Use arrows to move</p>
-        </div>
-        <div>
-          <img src="assets/laser-aliens.gif">
-          <p>Avoid enemy lasers. If you get hit, you lose a life and 50 points</p>
-        </div>
-        <div>
-          <img src="assets/bossalien.gif">
-          <p>Watch out for boss aliens. These guys take two shots to kill!</p>
-        </div>
-
+        <button id="playgame">Play game!</button>
       </div>
-
-
-      <button id="playgame">Play game!</button>
-    </div>
-    <div id="displaygame" class="hide">
-      <div id="displaystats">
+      <div id="displaygame" class="hide">
+        <div id="displaystats">
           <img src="assets/space-invaders-title.png" alt="Space Invaders" class="logo">
-        <div id="stats-info">
-          <div>
-            Level: <span id="displaylevel"></span>
+          <div id="stats-info">
+            <div>
+              Level: <span id="displaylevel"></span>
+            </div>
+            <div>
+              Score: <span id="displayscore"></span>
+            </div>
+            <div>
+              Lives: <span id="displaylives"></span></div>
           </div>
-          <div>
-            Score: <span id="displayscore"></span>
-          </div>
-          <div>
-            Lives: <span id="displaylives"></span></div>
-        </div>
           <button id="quitgame">Quit</button>
+        </div>
+        <div class="gridcontainer">
+          <div class="grid"></div>
+        </div>
+        <div class="planetbottom">
+          <button id="mobileleft">&lt;</button>
+          <button id="mobileshoot">shoot</button>
+          <button id="mobileright">&gt;</button>
+        </div>
       </div>
-      <div class="gridcontainer">
-        <div class="grid"></div>
+      <div id="displaygameover" class="hide">
+        <img src="assets/space-invaders-title.png" alt="Space Invaders" class="logo">
+        <div id="displaymessage"></div>
+        <button id="playagain">Next level</button>
       </div>
-      <div class="planetbottom">
-        <button id="mobileleft">&lt;</button>
-        <button id="mobileshoot">shoot</button>
-        <button id="mobileright">&gt;</button>
-
-      </div>
-    </div>
-    <div id="displaygameover" class="hide">
-      <img src="assets/space-invaders-title.png" alt="Space Invaders" class="logo">
-      <div id="displaymessage"></div>
-      <button id="playagain">Next level</button>
     </div>
   </div>
-</div>
   <script src="grid.js"></script>
 </body>
-
 </html>

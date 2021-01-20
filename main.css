@@ -28,8 +28,8 @@ body {
 
 video {
   object-fit: cover;
-  width: 100vw;
-  width: 100vh;
+  width: 100%;
+  height: 100%;
   position: fixed;
   top: 0;
   left: 0;
@@ -288,6 +288,12 @@ button:hover {
   #displaystats .logo {
     width: 70px;
   }
+  #displaygameover {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
   #displaystats>div div, #displayscore, #displaylives, #displaylevel {
     font-size: 14px;
     line-height: 16px;
@@ -297,10 +303,9 @@ button:hover {
     line-height: 14px;
     padding: 10px 14px 10px 14px;
   }
-
   #displaystats>div {
     flex-direction: column;
-    flex:none;
+    flex: none;
     max-width: 100px;
   }
   .gridcontainer {
@@ -310,11 +315,11 @@ button:hover {
     height: 24px;
   }
   #displayintro .logo, #displaygameover, .logo {
-    max-width: 40%
+    max-width: 200px;
   }
   button {
-    font-size: 14px;
-    line-height: 16px;
+    font-size: 16px;
+    line-height: 18px;
   }
   .planetbottom {
     padding: 0 0 10px 0;
@@ -327,5 +332,6 @@ button:hover {
     background-color: #ffffff;
     border: 1px solid #cccccc;
     padding: 14px 10px 14px 10px;
+    touch-action: manipulation;
   }
 }
