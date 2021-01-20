@@ -19,7 +19,32 @@
   <div id="contentcontainer">
     <div id="displayintro">
       <img src="assets/space-invaders-title.png" alt="Space Invaders" class="logo">
-      <p>Do not allow the invading alien swarm to reach your planet's surface. Press <strong>space bar</strong> to shoot, and hit the <strong>arrow keys</strong> to move to the left and right. Make sure to avoid the enemy lasers!</p>
+
+
+      <p>Defend your home planet against the invading alien swarm!</p>
+
+      <div id='instructions'>
+
+        <div>
+          <img src="assets/spacebar.png">
+          <p>Press space to shoot</p>
+        </div>
+        <div>
+          <img src="assets/arrows.png">
+          <p>Use arrows to move</p>
+        </div>
+        <div>
+          <img src="assets/laser-aliens.gif">
+          <p>Avoid enemy lasers. If you get hit, you lose a life and 50 points</p>
+        </div>
+        <div>
+          <img src="assets/bossalien.gif">
+          <p>Watch out for boss aliens. These guys take two shots to kill!</p>
+        </div>
+
+      </div>
+
+
       <button id="playgame">Play game!</button>
     </div>
     <div id="displaygame" class="hide">
@@ -41,6 +66,10 @@
         <div class="grid"></div>
       </div>
       <div class="planetbottom">
+        <button id="mobileleft">&lt;</button>
+        <button id="mobileshoot">shoot</button>
+        <button id="mobileright">&gt;</button>
+
       </div>
     </div>
     <div id="displaygameover" class="hide">

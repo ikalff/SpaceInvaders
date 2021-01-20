@@ -32,6 +32,11 @@ const displayMessage = document.querySelector('#displaymessage')
 const playGame = document.querySelector('#playgame')
 const playAgain = document.querySelector('#playagain')
 const quitGame = document.querySelector('#quitgame')
+const mobileLeft = document.querySelector('#mobileleft')
+const mobileShoot = document.querySelector('#mobileshoot')
+const mobileRight = document.querySelector('#mobileright')
+
+
 const levels = [
   {
     level: 1,
@@ -54,7 +59,7 @@ const levels = [
 ]
 
 
-//startGame()
+startGame()
 
 
 function startGame() {
@@ -134,6 +139,15 @@ quitGame.addEventListener('click', () => {
   if (confirm('Are you sure you want to quit?')) {
     gameOver('quit')
   }
+})
+mobileLeft.addEventListener('click', () => {
+  moveCharacter('left')
+})
+mobileRight.addEventListener('click', () => {
+  moveCharacter('right')
+})
+mobileShoot.addEventListener('click', () => {
+  shoot()
 })
 document.addEventListener('keyup', (event) => {
   const key = event.code
