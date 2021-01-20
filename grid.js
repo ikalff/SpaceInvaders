@@ -40,19 +40,19 @@ const mobileRight = document.querySelector('#mobileright')
 const levels = [
   {
     level: 1,
-    lives: 13,
+    lives: 3,
     bossAliens: 4,
     offset: 4
   },
   {
     level: 2,
-    lives: 15,
+    lives: 5,
     bossAliens: 8,
     offset: 3
   },
   {
     level: 3,
-    lives: 17,
+    lives: 7,
     bossAliens: 16,
     offset: 2
   }
