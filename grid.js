@@ -33,7 +33,7 @@ const quitGame = document.querySelector('#quitgame')
 
 
 
-//startGame()
+startGame()
 
 
 function startGame() {

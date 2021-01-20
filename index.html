@@ -10,30 +10,21 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Nova+Square&family=Odibee+Sans&family=Oxanium:wght@400;800&family=Staatliches&family=ZCOOL+QingKe+HuangYou&display=swap"
     rel="stylesheet">
-
 </head>
-
 <body>
- 
   <video autoplay muted loop id="myVideo">
     <source src="assets/iStock-483289035.mov" type="video/mp4">
   </video>
-
 <div id="planetbg">
   <div id="contentcontainer">
     <div id="displayintro">
       <img src="assets/space-invaders-title.png" alt="Space Invaders" class="logo">
-      <p>Do not allow the invading alien swarm to reach your planet's surface. Press <strong>space bar</strong> to shoot, and hit the <strong>arrow keys</strong> to move left and right. Make sure to avoid the enemy lasers!</p>
-      
+      <p>Do not allow the invading alien swarm to reach your planet's surface. Press <strong>space bar</strong> to shoot, and hit the <strong>arrow keys</strong> to move to the left and right. Make sure to avoid the enemy lasers!</p>
       <button id="playgame">Play game!</button>
     </div>
-
     <div id="displaygame" class="hide">
-
       <div id="displaystats">
-  
           <img src="assets/space-invaders-title.png" alt="Space Invaders" class="logo">
- 
         <div id="stats-info">
           <div>
             Score: <span id="displayscore"></span>
@@ -41,29 +32,21 @@
           <div>
             Lives: <span id="displaylives"></span></div>
         </div>
-   
           <button id="quitgame">Quit</button>
- 
       </div>
-
       <div class="gridcontainer">
         <div class="grid"></div>
       </div>
       <div class="planetbottom">
       </div>
     </div>
-
-
     <div id="displaygameover" class="hide">
       <img src="assets/space-invaders-title.png" alt="Space Invaders" class="logo">
       <div id="displaymessage"></div>
       <button id="playagain">Play again</button>
     </div>
-
   </div>
 </div>
-
-
   <script src="grid.js"></script>
 </body>
 
