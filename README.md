@@ -3,7 +3,6 @@
 For my first project for the General Assembly Software Engineering Immersive course, I built this game using HTML, CSS and Javascript.
 [Play the game:](https://ikalff.github.io/SpaceInvaders/) 
 
-
 ## Brief
 
 Space Invaders is a classic arcade game from the 80s. The player aims to shoot an invading alien armada, before it reaches the planet's surface using a mounted gun turret. The player can only move left or right. The aliens also move from left to right, and also down each time the reach the side of the screen. The aliens also periodically drop bombs towards the player. Once the player has destroyed a wave of aliens, the game starts again. The aim is to achieve the highest score possible before either being destroyed by the aliens, or allowing them to reach the planet's surface.
@@ -18,7 +17,7 @@ Space Invaders is a classic arcade game from the 80s. The player aims to shoot a
 * [Space Invaders 1978 - Arcade Gameplay - Youtube](https://www.youtube.com/watch?v=MU4psw3ccUI)
 * [Space Invaders - Wikipedia](https://en.wikipedia.org/wiki/Space_Invaders)
 
-
+ 
 ## Technologies Used
 - HTML
 - CSS
